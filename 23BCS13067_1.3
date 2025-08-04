@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --header-footer-bg: #4CAF50;
+      --sidebar-bg: #f2f2f2;
+      --link-color: purple;
+    }
+
+    body.dark-mode {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --header-footer-bg: #222;
+      --sidebar-bg: #333;
+      --link-color: #8888ff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: grid;
+      grid-template-areas: 
+        "header header"
+        "sidebar main"
+        "footer footer";
+      grid-template-columns: 200px 1fr;
+      grid-template-rows: 60px 1fr 40px;
+      height: 100vh;
+    }
+
+    header {
+      grid-area: header;
+      background-color: var(--header-footer-bg);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    header h1 {
+      font-size: 20px;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: white;
+    }
+
+    aside {
+      grid-area: sidebar;
+      background-color: var(--sidebar-bg);
+      padding: 20px;
+    }
+
+    aside ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    aside ul li a {
+      text-decoration: none;
+      color: var(--link-color);
+    }
+
+    main {
+      grid-area: main;
+      padding: 20px;
+    }
+
+    footer {
+      grid-area: footer;
+      background-color: var(--header-footer-bg);
+      color: white;
+      text-align: center;
+      line-height: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <div class="theme-toggle">
+      <label for="toggle">Dark Mode</label>
+      <input type="checkbox" id="toggle">
+    </div>
+  </header>
+
+  <aside>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Users</a></li>
+      <li><a href="#">Settings</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <h2>Welcome, Admin!</h2>
+    <p>This is the main content area. Add charts, tables, or reports here.</p>
+  </main>
+
+  <footer>
+    © 2025 Admin Panel
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('toggle');
+    toggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+
+</body>
+</html>
