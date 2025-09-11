@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Product Filter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    select {
+      padding: 8px 12px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .product {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: calc(33.33% - 10px);
+      box-sizing: border-box;
+    }
+    .product h3 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+    .product p {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Product List</h2>
+    <label for="categoryFilter">Filter by Category: </label>
+    <select id="categoryFilter">
+      <option value="All">All</option>
+      <option value="Shoes">Shoes</option>
+      <option value="Shirts">Shirts</option>
+      <option value="Gadgets">Gadgets</option>
+    </select>
+
+    <div class="products" id="productList"></div>
+  </div>
+
+  <script>
+    // Sample product data
+    const products = [
+      { name: "Running Shoes", category: "Shoes" },
+      { name: "Casual Sneakers", category: "Shoes" },
+      { name: "Formal Shirt", category: "Shirts" },
+      { name: "Graphic T-Shirt", category: "Shirts" },
+      { name: "Smartphone", category: "Gadgets" },
+      { name: "Wireless Earbuds", category: "Gadgets" },
+      { name: "Boots", category: "Shoes" },
+      { name: "Hoodie", category: "Shirts" },
+    ];
+
+    const productList = document.getElementById('productList');
+    const categoryFilter = document.getElementById('categoryFilter');
+
+    // Function to display products
+    function displayProducts(items) {
+      productList.innerHTML = ""; // Clear previous items
+      items.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product';
+        productDiv.innerHTML = `<h3>${product.name}</h3><p>Category: ${product.category}</p>`;
+        productList.appendChild(productDiv);
+      });
+    }
+
+    // Initial display of all products
+    displayProducts(products);
+
+    // Filter products when dropdown changes
+    categoryFilter.addEventListener('change', () => {
+      const selectedCategory = categoryFilter.value;
+      if (selectedCategory === "All") {
+        displayProducts(products);
+      } else {
+        const filtered = products.filter(p => p.category === selectedCategory);
+        displayProducts(filtered);
+      }
+    });
+  </script>
+</body>
+</html>
